@@ -24,15 +24,16 @@ local function fetch_helm_values(chart_name)
   end
 
   -- Execute helm command to get values
-  local cmd = string.format("helm show values %s", chart_name)
-  local handle = io.popen(cmd)
-  if not handle then
-    vim.notify("Failed to execute helm command: " .. cmd, vim.log.levels.ERROR)
+  local cmd = { "helm", "show", "values", chart_name }
+  local result = vim.system(cmd, { text = true }):wait()
+  if result.code ~= 0 then
+    vim.notify("Failed to execute helm command: " .. result.stderr, vim.log.levels.ERROR)
     return {}
   end
 
-  local values_yaml = handle:read("*a")
-  handle:close()
+  if result.stderr then
+    vim.notify(result.stderr, vim.log.levels.WARN)
+  end
 
   -- Parse YAML to Lua table
   if not yaml_parser then
@@ -41,7 +42,7 @@ local function fetch_helm_values(chart_name)
     return {}
   end
 
-  local ok2, parsed = pcall(yaml_parser.load, values_yaml)
+  local ok2, parsed = pcall(yaml_parser.load, result.stdout)
   if not ok2 then
     vim.notify("Failed to parse helm values YAML:" .. vim.inspect(parsed), vim.log.levels.ERROR)
     return {}
