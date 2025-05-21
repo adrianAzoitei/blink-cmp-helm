@@ -273,7 +273,7 @@ local function get_completion_items(bufnr, cursor_row, cursor_col)
         end
       end
 
-      if matches and #item.path > #parent_path - 1 then
+      if matches and #item.path == #parent_path then
         -- This item is at the next level down from our current path
         local new_item = vim.deepcopy(item)
 
