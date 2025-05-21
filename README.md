@@ -1,5 +1,6 @@
-# blink-cmp-env
-[blink.cmp](https://github.com/Saghen/blink.cmp) source for environment variables.
+# blink-cmp-helm
+
+[blink.cmp](https://github.com/Saghen/blink.cmp) source for Helm Charts.
 
 https://github.com/user-attachments/assets/df1576e6-0d44-40a8-9abb-a6c491710a33
 
