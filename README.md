@@ -1,6 +1,7 @@
 # blink-cmp-env
-
 [blink.cmp](https://github.com/Saghen/blink.cmp) source for environment variables.
+
+https://github.com/user-attachments/assets/df1576e6-0d44-40a8-9abb-a6c491710a33
 
 ## Installation
 
