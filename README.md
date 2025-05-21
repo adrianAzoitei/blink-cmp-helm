@@ -5,7 +5,6 @@
 ## Installation
 
 ### `lazy.nvim`
-
 ```lua
 {
     "saghen/blink.cmp",
@@ -24,6 +23,21 @@
         }
     }
 }
+```
+
+
+### Prerequisites
+This plugin relies on the [lyaml](https://github.com/gvvaughan/lyaml) rock. For `LazyVim` users it's recommended to install it using the [luarocks neovim plugin](https://github.com/vhyrro/luarocks.nvim).
+```lua
+return {
+  "vhyrro/luarocks.nvim",
+  priority = 1000, -- Very high priority is required, luarocks.nvim should run as the first plugin in your config.
+  config = true,
+  opts = {
+    rocks = { "lyaml" },
+  },
+}
+
 ```
 
 ## Usage
