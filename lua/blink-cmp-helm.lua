@@ -221,7 +221,7 @@ end
 -- Check if we're in a helm values file
 local function is_helm_values_file()
   local filename = vim.fn.expand("%:t")
-  return filename:match("values.ya?ml$") ~= nil or vim.bo.filetype == "yaml" or vim.bo.filetype == "helm"
+  return filename:match(".*values.ya?ml$") ~= nil
 end
 
 -- Get appropriate completion items based on cursor position and context
