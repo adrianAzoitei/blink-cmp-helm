@@ -70,9 +70,7 @@ local function scan_file_for_charts(bufnr)
         key = line:match("^(%S+):"), -- The top-level key
       }
 
-      if current_block.key then
-        charts[current_block.key] = current_block
-      end
+      charts[chart_ref] = current_block
     end
 
     -- If we're not in a block and we find a top-level key (no indentation)
@@ -245,7 +243,7 @@ local function get_completion_items(bufnr, cursor_row, cursor_col)
 
   -- If we have a top-level key that doesn't match our block key,
   -- we're probably in a different block or at the top level
-  if #parent_path > 0 and parent_path[1] ~= current_block.key then
+  if current_block.key and #parent_path > 0 and parent_path[1] ~= current_block.key then
     -- We might be in a different section of the file
     return {}
   end
